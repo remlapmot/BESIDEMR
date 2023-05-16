@@ -18,13 +18,10 @@ numeric sequence of L length as the indicator variable to initialise in \code{BM
 Generate random initial model space that doesn't produce empty and 1 variable model space.
 }
 \examples{
-
-
-#load data
+# Load data
 data(AMD_HDL)
-
-#Prior choice for beta, tau and inclusion of instruments
-L<-nrow(AMD_HDL)
-Ins_prior<-rep(0.5, L)
+# Prior choice for beta, tau and inclusion of instruments
+L         <- nrow(AMD_HDL)
+Ins_prior <- rep(0.5, L)
 randomS.initial.LI(L,Ins_prior)
 }
