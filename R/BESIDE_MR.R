@@ -53,7 +53,6 @@
 #' @references Shapland, C.Y., et al., Profile-likelihood Bayesian model averaging for two-sample summary data Mendelian randomization in the presence of horizontal pleiotropy.
 #' @export
 #' @examples
-#'
 #' # load data
 #' data(AMD_HDL)
 #'
@@ -75,7 +74,6 @@
 #' nIter<-50000
 #' #res_DL<-BMA_MRanalysis("DL_approx", 1, AMD_HDL$BetaXG, AMD_HDL$BetaYG, AMD_HDL$seBetaXG, AMD_HDL$seBetaYG, L, nIter, Prior_DL, H_DL, gen_inits_DL)
 #' #res_gamma<-BMA_MRanalysis("Full_Bayes", 1, AMD_HDL$BetaXG, AMD_HDL$BetaYG, AMD_HDL$seBetaXG, AMD_HDL$seBetaYG, L, nIter, Prior_gamma, H_gamma, gen_inits_gamma)
-
 BMA_MRanalysis<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG, N_Ins, N_Iter, Prior,
                          tuning_para, gen_inits){
 
