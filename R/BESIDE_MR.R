@@ -1123,7 +1123,7 @@ logpost_DL <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, indicator, hyper_B
 
   logpost = -0.5*sum(indicator)*log(2*pi) + (-0.5*sum(log(seBetaYG_sub^2+tausq) +
             ((BetaYG_sub-(Beta*BetaXG_sub))^2/(Beta^2*seBetaXG_sub^2+seBetaYG_sub^2+tausq)))) +  # log likelihood
-            dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T)                                   # priors in beta
+            stats::dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T)                                   # priors in beta
 
   return(list(tausq=tausq, logpost=logpost))
 }
@@ -1146,7 +1146,7 @@ logpost_DL_InsPen <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, indicator, 
                 ((BetaYG_sub-(Beta*BetaXG_sub))^2/(Beta^2*seBetaXG_sub^2+seBetaYG_sub^2+tausq)))) +
     (sum(indicator)*eta)
 
-  logpost = logf + dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T)
+  logpost = logf + stats::dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T)
 
   return(list(logf=logf, tausq=tausq, Q_stat=Q_stat, logpost=logpost))
 }
@@ -1170,10 +1170,10 @@ logpost_2Beta_DL <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta1, Beta2, indi
 
   logpost = (-0.5*sum(indicator1*w1)*log(2*pi)) + (-0.5*sum(indicator1*w1*(log(seBetaYG^2+tausq1) +
             ((BetaYG-(Beta1*BetaXG))^2/(Beta1^2*seBetaXG^2+seBetaYG^2+tausq1))))) +         # log likelihood for beta1
-            dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                         # priors in beta1
+            stats::dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                         # priors in beta1
             (-0.5*sum(indicator2*w2)*log(2*pi)) + (-0.5*sum(indicator2*w2*(log(seBetaYG^2+tausq2) +
             ((BetaYG-(Beta2*BetaXG))^2/(Beta2^2*seBetaXG^2+seBetaYG^2+tausq2))))) +         # log likelihood for beta2
-            dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T)                           # priors in beta2
+            stats::dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T)                           # priors in beta2
 
   return(list(tausq1=tausq1, tausq2=tausq2, logpost=logpost))
 }
@@ -1202,8 +1202,8 @@ logpost_2Beta_DL_InsPen <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta1, Beta
                                                                      ((BetaYG-(Beta2*BetaXG))^2/(Beta2^2*seBetaXG^2+seBetaYG^2+tausq2))))) +       # log likelihood for beta2
     (sum(indicator2*w2)*eta2)                                                     # model penalisation for beta2
 
-  logpost = logf + dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +             # priors in beta1
-    dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T)                     # priors in beta2
+  logpost = logf + stats::dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +             # priors in beta1
+    stats::dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T)                     # priors in beta2
 
   return(list(logf=logf, tausq1=tausq1, tausq2=tausq2, Q1_stat=Q1_stat, Q2_stat=Q2_stat, logpost=logpost))
 }
@@ -1226,7 +1226,7 @@ logpost_gammaTau <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, Prec, indica
 
   logpost = -0.5*sum(indicator)*log(2*pi) + (-0.5*sum(log(seBetaYG_sub^2+Tausq) +
             ((BetaYG_sub-(Beta*BetaXG_sub))^2/(Beta^2*seBetaXG_sub^2+seBetaYG_sub^2+Tausq)))) + #log likelihood
-            dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T) +                                #priors in beta
+            stats::dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T) +                                #priors in beta
             stats::dgamma(Prec, shape=hyper_Prec_shape, rate=hyper_Prec_rate, log=T)                   #priors in tau
 
   return(logpost=logpost)
@@ -1252,7 +1252,7 @@ logpost_gammaTau_InsPen <- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, Prec,
                 ((BetaYG_sub-(Beta*BetaXG_sub))^2/(Beta^2*seBetaXG_sub^2+seBetaYG_sub^2+Tausq)))) +
     (sum(indicator)*eta)
 
-  logpost = logf + dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T) +    # priors in Beta
+  logpost = logf + stats::dnorm(Beta, hyper_Beta_mean, hyper_Beta_sd, log=T) +    # priors in Beta
     stats::dgamma(Prec, shape=hyper_Prec_shape, rate=hyper_Prec_rate, log=T)               # priors in tau
 
 
@@ -1276,11 +1276,11 @@ logpost_2Beta_gammaTau<- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta1, Beta2,
 
   logpost = (-0.5*sum(indicator1*w1)*log(2*pi)) + (-0.5*sum(indicator1*w1*(log(seBetaYG^2+Tausq1) +
             ((BetaYG-(Beta1*BetaXG))^2/(Beta1^2*seBetaXG^2+seBetaYG^2+Tausq1))))) +                 #log likelihood
-            dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                                 #priors in beta1
+            stats::dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                                 #priors in beta1
             stats::dgamma(Prec1, shape=hyper_Prec1_shape, rate=hyper_Prec1_rate, log=T) +                  #priors in tau1
             (-0.5*sum(indicator2*w2)*log(2*pi)) + (-0.5*sum(indicator2*w2*(log(seBetaYG^2+Tausq2) +
             ((BetaYG-(Beta2*BetaXG))^2/(Beta2^2*seBetaXG^2+seBetaYG^2+Tausq2))))) +                 #log likelihood
-            dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T) +                                 #priors in beta1
+            stats::dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T) +                                 #priors in beta1
             stats::dgamma(Prec2, shape=hyper_Prec2_shape, rate=hyper_Prec2_rate, log=T)                    #priors in tau2
 
   return(logpost=logpost)
@@ -1312,9 +1312,9 @@ logpost_2Beta_gammaTau_InsPen<- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta1,
                                                                      ((BetaYG-(Beta2*BetaXG))^2/(Beta2^2*seBetaXG^2+seBetaYG^2+Tausq2))))) +           # log likelihood
     (sum(indicator2*w2)*eta2)                                                         # model penalisation for beta2
 
-  logpost = logf + dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                     # priors in Beta1
+  logpost = logf + stats::dnorm(Beta1, hyper_Beta1_mean, hyper_Beta1_sd, log=T) +                     # priors in Beta1
     stats::dgamma(Prec1, shape=hyper_Prec1_shape, rate=hyper_Prec1_rate, log=T) +            # priors in tau1
-    dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T) +                           # priors in Beta2
+    stats::dnorm(Beta2, hyper_Beta2_mean, hyper_Beta2_sd, log=T) +                           # priors in Beta2
     stats::dgamma(Prec2, shape=hyper_Prec2_shape, rate=hyper_Prec2_rate, log=T)              # priors in tau2
 
   return(list(logf=logf, Q1_stat=Q1_stat, Q2_stat=Q2_stat, logpost=logpost))
