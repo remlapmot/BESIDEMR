@@ -97,7 +97,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       newlogpost <- logpost_DL(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, oldIns_L, Prior$hyper_Beta_mean, Prior$hyper_Beta_sd)
       oldlp      <- oldlogpost$logpost
       newlp      <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta         <- oldBeta          #fails so return to oldb
         accept[i, 1] <- 0                #0 to indicate rejection of new value
       }
@@ -111,7 +111,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L        <- oldIns_L          #fails so return to oldIL
         tausq_hat    <- oldlogpost$tausq
         accept[i, 2] <- 0                 #0 to indicate rejection of new value
@@ -151,7 +151,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta1        <- oldBeta1          # fails so return to oldb
         accept[i, 1] <- 0
       }
@@ -167,7 +167,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta2        <- oldBeta2          # fails so return to oldb
         accept[i, 2] <- 0
       }
@@ -186,7 +186,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L1       <- oldIns_L1        # fails so return to oldIL
         tausq1_hat   <- oldlogpost$tausq1
         accept[i, 3] <- 0
@@ -205,7 +205,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L2       <- oldIns_L2        # fails so return to oldIL
         tausq2_hat   <-oldlogpost$tausq2
         accept[i, 4] <- 0
@@ -223,7 +223,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
     Beta   <- gen_inits$Beta
     UBPrec <- gen_inits$UBPrec
     LBPrec <- gen_inits$LBPrec
-    Prec   <- runif(1,LBPrec,UBPrec)
+    Prec   <- stats::runif(1,LBPrec,UBPrec)
     Ins_L  <- gen_inits$Ins_L
 
     # Saved space
@@ -245,7 +245,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
                                  Prior$hyper_Beta_mean, Prior$hyper_Beta_sd, Prior$hyper_Prec_shape, Prior$hyper_Prec_rate)
       oldlp <- oldlogpost+log(oldUBPrec-oldLBPrec)
       newlp <- newlogpost+log(oldUBPrec-oldLBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta         <- oldBeta          # fails so return to oldb
         accept[i, 1] <- 0
       }
@@ -253,7 +253,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       #2nd step: Compare likelihood for old and new tausq
       UBPrec     <- min(tuning_para$Prec_UL,Prec+tuning_para$Prec_gap)
       LBPrec     <- max(tuning_para$Prec_LL,Prec-tuning_para$Prec_gap)
-      Prec       <- runif(1,LBPrec,UBPrec)
+      Prec       <- stats::runif(1,LBPrec,UBPrec)
       oldlogpost <- logpost_gammaTau(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, oldPrec, oldIns_L,
                                  Prior$hyper_Beta_mean, Prior$hyper_Beta_sd, Prior$hyper_Prec_shape, Prior$hyper_Prec_rate)
       newlogpost <- logpost_gammaTau(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, Prec, oldIns_L,
@@ -261,7 +261,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost+log(UBPrec-LBPrec)
       newlp <- newlogpost+log(oldUBPrec-oldLBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec         <- oldPrec          # fails so return to oldPrecsq
         UBPrec       <- oldUBPrec
         LBPrec       <- oldLBPrec
@@ -277,7 +277,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost+log(UBPrec-LBPrec)
       newlp <- newlogpost+log(UBPrec-LBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L        <- oldIns_L        # fails so return to oldIL
         accept[i, 3] <- 0
       }
@@ -295,11 +295,11 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
     UBPrec1 <- gen_inits$UBPrec1
     LBPrec1 <- gen_inits$LBPrec1
-    Prec1   <- runif(1,LBPrec1,UBPrec1)
+    Prec1   <- stats::runif(1,LBPrec1,UBPrec1)
 
     UBPrec2 <- gen_inits$UBPrec2
     LBPrec2 <- gen_inits$LBPrec2
-    Prec2   <- runif(1,LBPrec2,UBPrec2)
+    Prec2   <- stats::runif(1,LBPrec2,UBPrec2)
 
     Ins_L1  <- gen_inits$Ins_L1
     Ins_L2  <- 1-Ins_L1
@@ -339,7 +339,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta1        <- oldBeta1          # fails so return to oldb
         accept[i, 1] <- 0
       }
@@ -360,7 +360,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta2       <- oldBeta2          # fails so return to oldb
         accept[i, 2]<- 0
       }
@@ -368,7 +368,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       #3rd step: Compare likelihood for old and new tausq1
       UBPrec1    <- min(tuning_para$Prec1_UL,Prec1+tuning_para$Prec1_gap)
       LBPrec1    <- max(tuning_para$Prec1_LL,Prec1-tuning_para$Prec1_gap)
-      Prec1      <- runif(1,LBPrec1,UBPrec1)
+      Prec1      <- stats::runif(1,LBPrec1,UBPrec1)
       oldlogpost <- logpost_2Beta_gammaTau(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, Beta2, oldPrec1, oldPrec2,
                                          oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                          Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate,
@@ -382,7 +382,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost + log(UBPrec1-LBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec1        <- oldPrec1          # fails so return to oldPrecsq
         UBPrec1      <- oldUBPrec1
         LBPrec1      <- oldLBPrec1
@@ -392,7 +392,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       #4th step: Compare likelihood for old and new tausq2
       UBPrec2    <- min(tuning_para$Prec2_UL,Prec2+tuning_para$Prec2_gap)
       LBPrec2    <- max(tuning_para$Prec2_LL,Prec2-tuning_para$Prec2_gap)
-      Prec2      <- runif(1,LBPrec2,UBPrec2)
+      Prec2      <- stats::runif(1,LBPrec2,UBPrec2)
       oldlogpost <- logpost_2Beta_gammaTau(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, Beta2, Prec1, oldPrec2,
                                          oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                          Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate,
@@ -406,7 +406,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost + log(UBPrec1-LBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec2       <- oldPrec2          # fails so return to oldPrecsq
         UBPrec2      <- oldUBPrec2
         LBPrec2      <- oldLBPrec2
@@ -428,7 +428,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 
       oldlp <- oldlogpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L1       <- oldIns_L1       # fails so return to oldIL
         accept[i, 5] <- 0
       }
@@ -447,7 +447,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
                                          Prior$hyper_Prec2_shape, Prior$hyper_Prec2_rate)
       oldlp <- oldlogpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L2       <- oldIns_L2       # fails so return to oldIL
         accept[i, 6] <- 0
       }
@@ -600,7 +600,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta <- oldBeta          # fails so return to oldb
         accept[i, 1] <- 0
         logLL_beta <- oldlogpost$logf
@@ -619,7 +619,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L <- oldIns_L        # fails so return to oldIL
         tausq_hat<-oldlogpost$tausq
         accept[i, 2]<- 0
@@ -677,7 +677,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta1 <- oldBeta1          # fails so return to oldb
         accept[i, 1]<- 0
         logLL_beta1<-oldlogpost$logf
@@ -697,7 +697,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta2 <- oldBeta2          # fails so return to oldb
         accept[i, 2]<- 0
         logLL_beta2<-oldlogpost$logf
@@ -721,7 +721,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L1 <- oldIns_L1        # fails so return to oldIL
         logLL_IL1<-oldlogpost$logf
         tausq1_hat<-oldlogpost$tausq1
@@ -747,7 +747,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost
       newlp <- newlogpost$logpost
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L2 <- oldIns_L2        # fails so return to oldIL
         logLL_IL2<-oldlogpost$logf
         tausq2_hat<-oldlogpost$tausq2
@@ -768,7 +768,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
     Beta   <- gen_inits$Beta
     UBPrec <- gen_inits$UBPrec
     LBPrec <- gen_inits$LBPrec
-    Prec   <- runif(1,LBPrec,UBPrec)
+    Prec   <- stats::runif(1,LBPrec,UBPrec)
     Ins_L    <- gen_inits$Ins_L
 
     # Saved space
@@ -794,7 +794,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost+log(oldUBPrec-oldLBPrec)
       newlp <- newlogpost$logpost+log(oldUBPrec-oldLBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta <- oldBeta          # fails so return to oldb
         accept[i, 1]<- 0
         logLL_beta<-oldlogpost$logf
@@ -803,7 +803,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
       #2nd step: Compare likelihood for old and new tausq
       UBPrec<-min(tuning_para$Prec_UL,Prec+tuning_para$Prec_gap)
       LBPrec<-max(tuning_para$Prec_LL,Prec-tuning_para$Prec_gap)
-      Prec <- runif(1,LBPrec,UBPrec)
+      Prec <- stats::runif(1,LBPrec,UBPrec)
       oldlogpost<-logpost_gammaTau_InsPen(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, oldPrec, oldIns_L, Prior$hyper_Beta_mean,
                                           Prior$hyper_Beta_sd, Prior$hyper_Prec_shape, Prior$hyper_Prec_rate, Penal_NoInst)
       newlogpost<-logpost_gammaTau_InsPen(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, Prec, oldIns_L, Prior$hyper_Beta_mean,
@@ -814,7 +814,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost+log(UBPrec-LBPrec)
       newlp <- newlogpost$logpost+log(oldUBPrec-oldLBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec <- oldPrec          # fails so return to oldPrecsq
         UBPrec <- oldUBPrec
         LBPrec <- oldLBPrec
@@ -834,7 +834,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost+log(UBPrec-LBPrec)
       newlp <- newlogpost$logpost+log(UBPrec-LBPrec)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L <- oldIns_L        # fails so return to oldIL
         accept[i, 3]<- 0
         logLL_IL<-oldlogpost$logf
@@ -855,11 +855,11 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
     UBPrec1 <- gen_inits$UBPrec1
     LBPrec1 <- gen_inits$LBPrec1
-    Prec1   <- runif(1,LBPrec1,UBPrec1)
+    Prec1   <- stats::runif(1,LBPrec1,UBPrec1)
 
     UBPrec2 <- gen_inits$UBPrec2
     LBPrec2 <- gen_inits$LBPrec2
-    Prec2   <- runif(1,LBPrec2,UBPrec2)
+    Prec2   <- stats::runif(1,LBPrec2,UBPrec2)
 
     Ins_L1  <- gen_inits$Ins_L1
     Ins_L2  <- 1-Ins_L1
@@ -903,7 +903,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost$logpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta1 <- oldBeta1          # fails so return to oldb
         accept[i, 1]<- 0
         logLL_beta1<-oldlogpost$logf
@@ -927,7 +927,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost$logpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Beta2 <- oldBeta2          # fails so return to oldb
         accept[i, 2]<- 0
         logLL_beta2<-oldlogpost$logf
@@ -936,7 +936,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
       #3rd step: Compare likelihood for old and new tausq1
       UBPrec1<-min(tuning_para$Prec1_UL,Prec1+tuning_para$Prec1_gap)
       LBPrec1<-max(tuning_para$Prec1_LL,Prec1-tuning_para$Prec1_gap)
-      Prec1 <- runif(1,LBPrec1,UBPrec1)
+      Prec1 <- stats::runif(1,LBPrec1,UBPrec1)
       oldlogpost<-logpost_2Beta_gammaTau_InsPen(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, Beta2, oldPrec1, oldPrec2,
                                                 oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                                 Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate, Penal_NoInst[1],
@@ -953,7 +953,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(UBPrec1-LBPrec1) + log(oldUBPrec2-oldLBPrec2)
       newlp <- newlogpost$logpost + log(oldUBPrec1-oldLBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec1 <- oldPrec1          # fails so return to oldPrecsq
         UBPrec1 <- oldUBPrec1
         LBPrec1 <- oldLBPrec1
@@ -964,7 +964,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
       #4th step: Compare likelihood for old and new tausq2
       UBPrec2<-min(tuning_para$Prec2_UL,Prec2+tuning_para$Prec2_gap)
       LBPrec2<-max(tuning_para$Prec2_LL,Prec2-tuning_para$Prec2_gap)
-      Prec2 <- runif(1,LBPrec2,UBPrec2)
+      Prec2 <- stats::runif(1,LBPrec2,UBPrec2)
       oldlogpost<-logpost_2Beta_gammaTau_InsPen(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, Beta2, Prec1, oldPrec2,
                                                 oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                                 Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate, Penal_NoInst[1],
@@ -981,7 +981,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost$logpost + log(UBPrec1-LBPrec1) + log(oldUBPrec2-oldLBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Prec2 <- oldPrec2          # fails so return to oldPrecsq
         UBPrec2 <- oldUBPrec2
         LBPrec2 <- oldLBPrec2
@@ -1008,7 +1008,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost$logpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L1 <- oldIns_L1       # fails so return to oldIL
         accept[i, 5]<- 0
         logLL_IL1<-oldlogpost$logf
@@ -1034,7 +1034,7 @@ BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seB
 
       oldlp <- oldlogpost$logpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
       newlp <- newlogpost$logpost + log(UBPrec1-LBPrec1) + log(UBPrec2-LBPrec2)
-      if( log(runif(1,0,1)) > (newlp-oldlp) ) {
+      if( log(stats::runif(1,0,1)) > (newlp-oldlp) ) {
         Ins_L2 <- oldIns_L2       # fails so return to oldIL
         accept[i, 6]<- 0
         logLL_IL2<-oldlogpost$logf
