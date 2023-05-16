@@ -48,11 +48,11 @@
 #' \eqn{\beta, \tau^2, I_1,...,I_L} for all iterations (rows). TWO PARAMETER MODEL: columns gives sampled values of
 #' \eqn{\beta_1, \beta_2, \tau_1^2, \tau_2^2, I_{11},...,I_{1L}, I_{21},...,I_{2L}} for all iterations (rows).}
 #' \item{\code{accept_rate}}{acceptance rate for each of the parameter from \code{S}.}
-#'}
-#'@author Chin Yang Shapland; Jack Bowden.
-#'@references Shapland, C.Y., et al., Profile-likelihood Bayesian model averaging for two-sample summary data Mendelian randomization in the presence of horizontal pleiotropy.
-#'@export
-#'@examples
+#' }
+#' @author Chin Yang Shapland; Jack Bowden.
+#' @references Shapland, C.Y., et al., Profile-likelihood Bayesian model averaging for two-sample summary data Mendelian randomization in the presence of horizontal pleiotropy.
+#' @export
+#' @examples
 #'
 #' # load data
 #' data(AMD_HDL)
