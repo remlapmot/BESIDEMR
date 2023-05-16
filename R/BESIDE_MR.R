@@ -92,7 +92,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       oldIns_L <- Ins_L
 
       #1st step: Compare likelihood for old and new Beta
-      Beta       <- Beta + rnorm(1,0,tuning_para$Beta)
+      Beta       <- Beta + stats::rnorm(1,0,tuning_para$Beta)
       oldlogpost <- logpost_DL(BetaXG,BetaYG,seBetaXG,seBetaYG, oldBeta, oldIns_L, Prior$hyper_Beta_mean, Prior$hyper_Beta_sd)
       newlogpost <- logpost_DL(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, oldIns_L, Prior$hyper_Beta_mean, Prior$hyper_Beta_sd)
       oldlp      <- oldlogpost$logpost
@@ -141,7 +141,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       oldIns_L2 <- Ins_L2
 
       #1st step: Compare likelihood for old and new Beta1
-      Beta1      <- Beta1 + rnorm(1,0,tuning_para$Beta1_h)
+      Beta1      <- Beta1 + stats::rnorm(1,0,tuning_para$Beta1_h)
       oldlogpost <- logpost_2Beta_DL(BetaXG, BetaYG, seBetaXG, seBetaYG, oldBeta1, oldBeta2, oldIns_L1,
                                     Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd, oldIns_L2,
                                     Prior$hyper_Beta2_mean, Prior$hyper_Beta2_sd)
@@ -157,7 +157,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       }
 
       #2nd step: Compare likelihood for old and new Beta2
-      Beta2      <- Beta2 + rnorm(1,0,tuning_para$Beta2_h)
+      Beta2      <- Beta2 + stats::rnorm(1,0,tuning_para$Beta2_h)
       oldlogpost <- logpost_2Beta_DL(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, oldBeta2, oldIns_L1,
                                     Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd, oldIns_L2,
                                     Prior$hyper_Beta2_mean, Prior$hyper_Beta2_sd)
@@ -238,7 +238,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       oldIns_L  <- Ins_L
 
       #1st step: Compare likelihood for old and new Beta
-      Beta       <- Beta + rnorm(1,0,tuning_para$Beta)
+      Beta       <- Beta + stats::rnorm(1,0,tuning_para$Beta)
       oldlogpost <- logpost_gammaTau(BetaXG,BetaYG,seBetaXG,seBetaYG, oldBeta, oldPrec, oldIns_L,
                                  Prior$hyper_Beta_mean, Prior$hyper_Beta_sd, Prior$hyper_Prec_shape, Prior$hyper_Prec_rate)
       newlogpost <- logpost_gammaTau(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta, oldPrec, oldIns_L,
@@ -324,7 +324,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       oldIns_L2  <- Ins_L2
 
       #1st step: Compare likelihood for old and new Beta1
-      Beta1      <- Beta1 + rnorm(1,0,tuning_para$Beta1)
+      Beta1      <- Beta1 + stats::rnorm(1,0,tuning_para$Beta1)
       oldlogpost <- logpost_2Beta_gammaTau(BetaXG, BetaYG, seBetaXG, seBetaYG, oldBeta1, oldBeta2, oldPrec1, oldPrec2,
                                          oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                          Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate,
@@ -345,7 +345,7 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
       }
 
       #2nd step: Compare likelihood for old and new Beta2
-      Beta2      <- Beta2 + rnorm(1,0,tuning_para$Beta2)
+      Beta2      <- Beta2 + stats::rnorm(1,0,tuning_para$Beta2)
       oldlogpost <- logpost_2Beta_gammaTau(BetaXG, BetaYG, seBetaXG, seBetaYG, Beta1, oldBeta2, oldPrec1, oldPrec2,
                                          oldIns_L1, Prior$hyper_Beta1_mean, Prior$hyper_Beta1_sd,
                                          Prior$hyper_Prec1_shape, Prior$hyper_Prec1_rate,
