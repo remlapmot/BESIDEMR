@@ -487,7 +487,7 @@ randomS.initial.LI <- function(L, ins_prior) {
   Ind_L <- rep(0,L)
   repeat {
     # do something
-    Ind_L <- rbinom(L, 1, ins_prior)
+    Ind_L <- stats::rbinom(L, 1, ins_prior)
     # exit if the condition is met
     if (sum(Ind_L) >= 5) break
   }
