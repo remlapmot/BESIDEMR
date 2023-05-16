@@ -473,11 +473,11 @@ BMA_MRanalysis <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG
 #'
 #' @export
 #' @examples
-#' #load data
+#' # Load data
 #' data(AMD_HDL)
-#' #Prior choice for beta, tau and inclusion of instruments
-#' L<-nrow(AMD_HDL)
-#' Ins_prior<-rep(0.5, L)
+#' # Prior choice for beta, tau and inclusion of instruments
+#' L         <- nrow(AMD_HDL)
+#' Ins_prior <- rep(0.5, L)
 #' randomS.initial.LI(L,Ins_prior)
 randomS.initial.LI <- function(L, ins_prior) {
   Ind_L <- rep(0,L)
