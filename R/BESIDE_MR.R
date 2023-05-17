@@ -1329,5 +1329,3 @@ logpost_2Beta_gammaTau_InsPen<- function(BetaXG,BetaYG,seBetaXG,seBetaYG, Beta1,
 
   return(list(logf=logf, Q1_stat=Q1_stat, Q2_stat=Q2_stat, logpost=logpost))
 }
-
-##############################################################################################################################
