@@ -1065,7 +1065,7 @@ BMA_MRanalysis_InsPen <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,s
 
 }
 
-######################### Subfunctions that are used by BMA_MRanalysis() #######################################################
+## Subfunctions that are used by BMA_MRanalysis() ----
 
 ### randomS.LI() ###
 #Generate random model space that doesn't produce empty and 1 variable model space
