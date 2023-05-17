@@ -520,7 +520,7 @@ randomS.initial.LI <- function(L, ins_prior) {
 #' \item{\code{$hyper_Prec1_shape}, \code{$hyper_Prec1_rate}, \code{$hyper_Prec2_shape}, \code{$hyper_Prec2_rate}}{TWO
 #' PARAMETER MODEL with "Full_Bayes": to specify shape and rate for the gamma distribution of precision.}
 #' \item{\code{$Ins1_prob}, \code{$Ins2_prob}}{TWO PARAMETER MODEL: assign prior inclusion probability for each instrument in set 1 or set 2
-#' repectively.}
+#' respectively.}
 #' }
 #' @param tuning_para Tuning parameter to ensure sufficient acceptance rate (recommended between 0.25 - 0.45);
 #' \describe{
