@@ -1,4 +1,4 @@
-#' Effect of HDL choesterol on age-related macular degeneration (AMD)
+#' Effect of HDL cholesterol on age-related macular degeneration (AMD)
 #'
 #' We performed three-sample MR, where we selected instruments from The Metabolic Syndrome in Men (METSIM) GWAS, then extracted their summary data from `MRChallenge2019`, where:
 #' \enumerate{
