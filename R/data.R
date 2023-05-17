@@ -5,14 +5,8 @@
 #' \item{SNP-HDL:}{Kettunen et al. Available from: http://europepmc.org/articles/PMC4814583}
 #' \item{SNP-AMD:}{International AMD Genomics Consortium (IAMDGC) Available from: http://europepmc.org/articles/PMC4745342}
 #' }
-#'
-#'
 #' @docType data
-#'
 #' @usage data(AMD_HDL)
-#'
 #' @format A \code{data.frame} with 27 rows and 4 variables.
-#'
 #' @keywords datasets
-#'
 "AMD_HDL"
