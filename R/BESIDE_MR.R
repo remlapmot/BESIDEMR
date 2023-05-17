@@ -67,12 +67,13 @@
 #'   hyper_Prec_rate = 0.00005, Ins_prob = Ins_prior)
 #'
 #' # Tuning parameter for beta
-#' H_DL    <- list(Beta=0.05)
-#' H_gamma <- list(Beta=0.05, Prec_LL=0, Prec_UL=1000000, Prec_gap=150000)
+#' H_DL    <- list(Beta = 0.05)
+#' H_gamma <- list(Beta = 0.05, Prec_LL = 0, Prec_UL = 1000000, Prec_gap = 150000)
 #'
 #' # Generate initial values
-#' gen_inits_DL.   <- list(Beta=rnorm(1,0,10), Ins_L=randomS.initial.LI(L,Ins_prior))
-#' gen_inits_gamma <- list(Beta=rnorm(1,0,10), UBPrec=1000000, LBPrec=0, Ins_L=randomS.initial.LI(L,Ins_prior))
+#' gen_inits_DL.   <- list(Beta = rnorm(1, 0, 10), Ins_L = randomS.initial.LI(L, Ins_prior))
+#' gen_inits_gamma <- list(Beta = rnorm(1, 0, 10), UBPrec = 1000000,
+#'   LBPrec = 0, Ins_L = randomS.initial.LI(L, Ins_prior))
 #'
 #' # One-parameter model
 #' nIter.     <- 50000
