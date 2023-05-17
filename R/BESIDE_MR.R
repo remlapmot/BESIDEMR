@@ -1101,7 +1101,7 @@ randomS_cond.LI <- function(Ind_L1, Ind_L2, L, ins_prior) {
 #DerSimonian and Laird estimate
 #From Bowden et al. 2019, IJE
 
-DL = function(y=BIV,s=se.BIV){
+DL = function(y, s){
 
   k          = length(y)
   w          = 1/s^2           ; sum.w  = sum(w)
