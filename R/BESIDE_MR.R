@@ -50,7 +50,10 @@
 #' \item{\code{accept_rate}}{acceptance rate for each of the parameter from \code{S}.}
 #' }
 #' @author Chin Yang Shapland; Jack Bowden.
-#' @references Shapland, C.Y., et al., Profile-likelihood Bayesian model averaging for two-sample summary data Mendelian randomization in the presence of horizontal pleiotropy.
+#' @references Shapland, C.Y., Zhao Q, Bowden J, Profile-likelihood Bayesian model
+#' averaging for two-sample summary data Mendelian randomization in the presence
+#' of horizontal pleiotropy. Statistics in Medicine, 2022, 41, 6, 1100-1119.
+#' \doi{10.1002/sim.9320}
 #' @export
 #' @examples
 #' # load data
