@@ -3,7 +3,7 @@
 \docType{data}
 \name{AMD_HDL}
 \alias{AMD_HDL}
-\title{Effect of HDL choesterol on age-related macular degeneration (AMD)}
+\title{Effect of HDL cholesterol on age-related macular degeneration (AMD)}
 \format{
 A \code{data.frame} with 27 rows and 4 variables.
 }
@@ -11,10 +11,11 @@ A \code{data.frame} with 27 rows and 4 variables.
 data(AMD_HDL)
 }
 \description{
-We performed three-sample MR, where we selected instruments from The Metabolic Syndrome in Men (METSIM) GWAS, then extracted their summary data from \code{MRChallenge2019}, where:
+We performed three-sample MR, where we selected instruments from The Metabolic
+Syndrome in Men (METSIM) GWAS, then extracted their summary data from \code{MRChallenge2019}, where:
 \enumerate{
-\item{SNP-HDL:}{Kettunen et al. Available from: http://europepmc.org/articles/PMC4814583}
-\item{SNP-AMD:}{International AMD Genomics Consortium (IAMDGC) Available from: http://europepmc.org/articles/PMC4745342}
+\item{SNP-HDL: }{Kettunen et al. Available from: \url{http://europepmc.org/articles/PMC4814583}}
+\item{SNP-AMD: }{International AMD Genomics Consortium (IAMDGC) Available from: \url{http://europepmc.org/articles/PMC4745342}}
 }
 }
 \keyword{datasets}

@@ -47,7 +47,7 @@ MODEL: to specify mean and standard deviation for the normally distributed \eqn{
 \item{\code{$hyper_Prec1_shape}, \code{$hyper_Prec1_rate}, \code{$hyper_Prec2_shape}, \code{$hyper_Prec2_rate}}{TWO
 PARAMETER MODEL with "Full_Bayes": to specify shape and rate for the gamma distribution of precision.}
 \item{\code{$Ins1_prob}, \code{$Ins2_prob}}{TWO PARAMETER MODEL: assign prior inclusion probability for each instrument in set 1 or set 2
-repectively.}
+respectively.}
 }}
 
 \item{tuning_para}{Tuning parameter to ensure sufficient acceptance rate (recommended between 0.25 - 0.45);
@@ -87,32 +87,40 @@ An object of class \code{"beside"} containing the following components:\describe
 Sensitivity analysis that fits BESIDE-MR model with penalisation term (\eqn{\eta}) for number of instruments.
 }
 \examples{
-
 # load data
 data(AMD_HDL)
 
 # Prior choice for beta, tau and inclusion of instruments
-L<-nrow(AMD_HDL)
-Ins_prior<-rep(0.5, L)
-Prior_DL<-list(hyper_Beta_mean=0, hyper_Beta_sd=1, Ins_prob=Ins_prior)
-Prior_gamma<-list(hyper_Beta_mean=0, hyper_Beta_sd=1, hyper_Prec_shape=2, hyper_Prec_rate=0.00005, Ins_prob=Ins_prior)
+L           <- nrow(AMD_HDL)
+Ins_prior   <- rep(0.5, L)
+Prior_DL    <- list(hyper_Beta_mean = 0, hyper_Beta_sd = 1, Ins_prob = Ins_prior)
+Prior_gamma <- list(hyper_Beta_mean = 0, hyper_Beta_sd = 1, hyper_Prec_shape = 2,
+  hyper_Prec_rate = 0.00005, Ins_prob = Ins_prior)
 
 # Tuning parameter for beta
-H_DL<-list(Beta=0.05)
-H_gamma<-list(Beta=0.05, Prec_LL=0, Prec_UL=1000000, Prec_gap=150000)
+H_DL    <- list(Beta = 0.05)
+H_gamma <- list(Beta = 0.05, Prec_LL = 0, Prec_UL = 1000000, Prec_gap = 150000)
 
 # Generate initial values
-gen_inits_DL<-list(Beta=rnorm(1,0,10), Ins_L=randomS.initial.LI(L,Ins_prior))
-gen_inits_gamma<-list(Beta=rnorm(1,0,10), UBPrec=1000000, LBPrec=0, Ins_L=randomS.initial.LI(L,Ins_prior))
+gen_inits_DL    <- list(Beta = rnorm(1, 0, 10), Ins_L = randomS.initial.LI(L, Ins_prior))
+gen_inits_gamma <- list(Beta = rnorm(1, 0, 10), UBPrec = 1000000, LBPrec = 0,
+  Ins_L = randomS.initial.LI(L, Ins_prior))
 
 # One-parameter model with penalisation parameter
-eta_sense<-5 # penalisation value which favours models with many instruments
-nIter<-50000
-#res_DL<-BMA_MRanalysis_InsPen("DL_approx",1, AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter, Prior_DL, H_DL, gen_inits_DL, eta_sense)
-#res_gamma<-BMA_MRanalysis_InsPen("Full_Bayes",1, AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter, Prior_gamma, H_gamma, gen_inits_gamma, eta_sense)
+eta_sense          <- 5 # penalisation value which favours models with many instruments
+nIter              <- 50000
+# res_DL           <- BMA_MRanalysis_InsPen("DL_approx",1, AMD_HDL$beta_XL.HDL.C,
+#   AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter,
+#   Prior_DL, H_DL, gen_inits_DL, eta_sense)
+# res_gamma        <- BMA_MRanalysis_InsPen("Full_Bayes",1,
+#   AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C,
+# AMD_HDL$se_amd, L, nIter, Prior_gamma, H_gamma, gen_inits_gamma, eta_sense)
 }
 \references{
-Shapland, C.Y., et al., Profile-likelihood Bayesian model averaging for two-sample summary data Mendelian randomization in the presence of horizontal pleiotropy.
+Shapland, C.Y., Zhao Q, Bowden J, Profile-likelihood Bayesian model
+averaging for two-sample summary data Mendelian randomization in the presence
+of horizontal pleiotropy. Statistics in Medicine, 2022, 41, 6, 1100-1119.
+\doi{10.1002/sim.9320}
 }
 \author{
 Chin Yang Shapland; Jack Bowden.
