@@ -577,12 +577,15 @@ randomS.initial.LI <- function(L, ins_prior) {
 #'   Ins_L = randomS.initial.LI(L, Ins_prior))
 #'
 #' # One-parameter model with penalisation parameter
-#' eta_sense<-5 # penalisation value which favours models with many instruments
-#' nIter<-50000
-#' #res_DL<-BMA_MRanalysis_InsPen("DL_approx",1, AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter, Prior_DL, H_DL, gen_inits_DL, eta_sense)
-#' #res_gamma<-BMA_MRanalysis_InsPen("Full_Bayes",1, AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter, Prior_gamma, H_gamma, gen_inits_gamma, eta_sense)
-
-BMA_MRanalysis_InsPen<-function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG, N_Ins, N_Iter, Prior, tuning_para,
+#' eta_sense          <- 5 # penalisation value which favours models with many instruments
+#' nIter              <- 50000
+#' # res_DL           <- BMA_MRanalysis_InsPen("DL_approx",1, AMD_HDL$beta_XL.HDL.C,
+#' #   AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C, AMD_HDL$se_amd, L, nIter,
+#' #   Prior_DL, H_DL, gen_inits_DL, eta_sense)
+#' # res_gamma        <- BMA_MRanalysis_InsPen("Full_Bayes",1,
+#' #   AMD_HDL$beta_XL.HDL.C, AMD_HDL$beta_amd, AMD_HDL$se_XL.HDL.C,
+#' # AMD_HDL$se_amd, L, nIter, Prior_gamma, H_gamma, gen_inits_gamma, eta_sense)
+BMA_MRanalysis_InsPen <- function(tau_estimate, N_Beta, BetaXG,BetaYG,seBetaXG,seBetaYG, N_Ins, N_Iter, Prior, tuning_para,
                                 gen_inits, Penal_NoInst){
 
   if (tau_estimate=="DL_approx" & N_Beta==1 & length(Penal_NoInst)==1){
